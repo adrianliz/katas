@@ -112,4 +112,23 @@ public final class BoardShould {
 
     assertThat(board.getWinner()).isNotPresent();
   }
+
+  @Test
+  public void does_not_allow_to_play_in_a_played_position() {
+    final Board board = new Board();
+
+    board.play(new Position(0, 0));
+    board.play(new Position(1, 0));
+    board.play(new Position(0, 1));
+    board.play(new Position(0, 2));
+    board.play(new Position(0, 2));
+
+    /*
+     *  X | X | O
+     *  O | - | -
+     *  - | - | -
+     */
+
+    assertThat(board.getWinner()).isNotPresent();
+  }
 }
