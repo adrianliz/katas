@@ -12,4 +12,7 @@
   <suppress checks="MissingJavadocMethod"/>
   <suppress checks="MissingJavadocType"/>
   <suppress checks="JavadocPackage"/>
+
+  <suppress checks="MemberName"/>
+  <suppress checks="MethodName"/>
 </suppressions>
