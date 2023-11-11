@@ -18,8 +18,8 @@ public final class Board {
 
   public Optional<Player> getWinner() {
     if (playerWithTurn.equals(Player.O)) {
-      return cells.playerHasLine(Player.X) ? Optional.of(Player.X) : Optional.empty();
+      return cells.playerHasThreeInLine(Player.X) ? Optional.of(Player.X) : Optional.empty();
     }
-    return cells.playerHasLine(Player.O) ? Optional.of(Player.O) : Optional.empty();
+    return cells.playerHasThreeInLine(Player.O) ? Optional.of(Player.O) : Optional.empty();
   }
 }
