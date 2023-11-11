@@ -18,32 +18,21 @@ public final class Board {
     playerWithTurn = "X";
   }
 
-  private boolean xHasWon() {
-    return positionsWithX.stream().allMatch(p -> p.x() == 0)
-        || positionsWithX.stream().allMatch(p -> p.x() == 1)
-        || positionsWithX.stream().allMatch(p -> p.x() == 2)
-        || positionsWithX.stream().allMatch(p -> p.y() == 0)
-        || positionsWithX.stream().allMatch(p -> p.y() == 1)
-        || positionsWithX.stream().allMatch(p -> p.y() == 2)
-        || positionsWithX.stream().allMatch(p -> p.x() == p.y())
-        || positionsWithX.stream().allMatch(p -> p.x() + p.y() == 2);
-  }
-
-  private boolean oHasWon() {
-    return positionsWithO.stream().allMatch(p -> p.x() == 0)
-        || positionsWithO.stream().allMatch(p -> p.x() == 1)
-        || positionsWithO.stream().allMatch(p -> p.x() == 2)
-        || positionsWithO.stream().allMatch(p -> p.y() == 0)
-        || positionsWithO.stream().allMatch(p -> p.y() == 1)
-        || positionsWithO.stream().allMatch(p -> p.y() == 2)
-        || positionsWithO.stream().allMatch(p -> p.x() == p.y())
-        || positionsWithO.stream().allMatch(p -> p.x() + p.y() == 2);
+  private boolean playerHasWon(List<Position> positions) {
+    return positions.stream().allMatch(p -> p.x() == 0)
+        || positions.stream().allMatch(p -> p.x() == 1)
+        || positions.stream().allMatch(p -> p.x() == 2)
+        || positions.stream().allMatch(p -> p.y() == 0)
+        || positions.stream().allMatch(p -> p.y() == 1)
+        || positions.stream().allMatch(p -> p.y() == 2)
+        || positions.stream().allMatch(p -> p.x() == p.y())
+        || positions.stream().allMatch(p -> p.x() + p.y() == 2);
   }
 
   public String getWinner() {
     if (playerWithTurn.equals("O")) {
-      return xHasWon() ? "X" : "Tie";
+      return playerHasWon(positionsWithX) ? "X" : "Tie";
     }
-    return oHasWon() ? "O" : "Tie";
+    return playerHasWon(positionsWithO) ? "O" : "Tie";
   }
 }
