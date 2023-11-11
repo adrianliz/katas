@@ -1,25 +1,49 @@
 package com.adrianliz;
 
-public final class Board {
+import java.util.ArrayList;
+import java.util.List;
 
+public final class Board {
+  private final List<Position> positionsWithX = new ArrayList<>();
+  private final List<Position> positionsWithO = new ArrayList<>();
   private String playerWithTurn = "X";
-  private int numberOfX = 0;
-  private int numberOfO = 0;
 
   public void play(Position position) {
     if (playerWithTurn.equals("X")) {
-      numberOfX++;
+      positionsWithX.add(position);
       playerWithTurn = "O";
       return;
     }
-    numberOfO++;
+    positionsWithO.add(position);
     playerWithTurn = "X";
+  }
+
+  private boolean xHasWon() {
+    return positionsWithX.stream().allMatch(p -> p.x() == 0)
+        || positionsWithX.stream().allMatch(p -> p.x() == 1)
+        || positionsWithX.stream().allMatch(p -> p.x() == 2)
+        || positionsWithX.stream().allMatch(p -> p.y() == 0)
+        || positionsWithX.stream().allMatch(p -> p.y() == 1)
+        || positionsWithX.stream().allMatch(p -> p.y() == 2)
+        || positionsWithX.stream().allMatch(p -> p.x() == p.y())
+        || positionsWithX.stream().allMatch(p -> p.x() + p.y() == 2);
+  }
+
+  private boolean oHasWon() {
+    return positionsWithO.stream().allMatch(p -> p.x() == 0)
+        || positionsWithO.stream().allMatch(p -> p.x() == 1)
+        || positionsWithO.stream().allMatch(p -> p.x() == 2)
+        || positionsWithO.stream().allMatch(p -> p.y() == 0)
+        || positionsWithO.stream().allMatch(p -> p.y() == 1)
+        || positionsWithO.stream().allMatch(p -> p.y() == 2)
+        || positionsWithO.stream().allMatch(p -> p.x() == p.y())
+        || positionsWithO.stream().allMatch(p -> p.x() + p.y() == 2);
   }
 
   public String getWinner() {
     if (playerWithTurn.equals("O")) {
-      return numberOfX == 3 ? "X" : "Tie";
+      return xHasWon() ? "X" : "Tie";
     }
-    return numberOfO == 3 ? "O" : "Tie";
+    return oHasWon() ? "O" : "Tie";
   }
 }
