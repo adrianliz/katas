@@ -18,8 +18,8 @@ public final class Board {
 
   public String getWinner() {
     if (playerWithTurn.equals("O")) {
-      return numberOfX == 3 ? "X" : null;
+      return numberOfX == 3 ? "X" : "Tie";
     }
-    return numberOfO == 3 ? "O" : null;
+    return numberOfO == 3 ? "O" : "Tie";
   }
 }
