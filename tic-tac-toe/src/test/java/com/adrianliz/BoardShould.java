@@ -41,6 +41,40 @@ public final class BoardShould {
                 new Position(2, 0))));
   }
 
+  private static Stream<Arguments> repeatedMovements() {
+    /*
+     *  X | X | -
+     *  O | O | -
+     *  (X) | - | -
+     */
+
+    /*
+     *  O | O | -
+     *  X | X | -
+     *  (O) | X | -
+     */
+    return Stream.of(
+        Arguments.of(
+            // Repeated position on 2, 0 for O
+            List.of(
+                new Position(0, 0),
+                new Position(1, 0),
+                new Position(0, 1),
+                new Position(1, 1),
+                new Position(2, 0),
+                new Position(2, 0))),
+        Arguments.of(
+            // Repeated position on 2, 0 for X
+            List.of(
+                new Position(1, 0),
+                new Position(0, 0),
+                new Position(1, 1),
+                new Position(0, 1),
+                new Position(2, 1),
+                new Position(2, 0),
+                new Position(2, 0))));
+  }
+
   @Test
   public void return_x_as_winner_when_has_a_line() {
     final Board board = new Board();
@@ -113,21 +147,12 @@ public final class BoardShould {
     assertThat(board.getWinner()).isNotPresent();
   }
 
-  @Test
-  public void does_not_allow_to_play_in_a_played_position() {
+  @ParameterizedTest
+  @MethodSource("repeatedMovements")
+  public void does_not_allow_to_play_in_a_played_position(final List<Position> movements) {
     final Board board = new Board();
 
-    board.play(new Position(0, 0));
-    board.play(new Position(1, 0));
-    board.play(new Position(0, 1));
-    board.play(new Position(0, 2));
-    board.play(new Position(0, 2));
-
-    /*
-     *  X | X | O
-     *  O | - | -
-     *  - | - | -
-     */
+    movements.forEach(board::play);
 
     assertThat(board.getWinner()).isNotPresent();
   }
