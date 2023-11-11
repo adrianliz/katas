@@ -6,7 +6,7 @@ public final class Board {
   private int numberOfX = 0;
   private int numberOfO = 0;
 
-  public void play(int x, int y) {
+  public void play(Position position) {
     if (playerWithTurn.equals("X")) {
       numberOfX++;
       playerWithTurn = "O";
