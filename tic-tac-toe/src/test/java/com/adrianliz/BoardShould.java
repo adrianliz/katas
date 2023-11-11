@@ -18,4 +18,18 @@ public final class BoardShould {
 
     assertThat(board.getWinner()).isEqualTo("X");
   }
+
+  @Test
+  public void return_o_as_winner_when_has_a_line() {
+    final Board board = new Board();
+
+    board.play(0, 0);
+    board.play(1, 0);
+    board.play(0, 1);
+    board.play(1, 1);
+    board.play(2, 2);
+    board.play(1, 2);
+
+    assertThat(board.getWinner()).isEqualTo("O");
+  }
 }
