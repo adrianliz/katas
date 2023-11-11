@@ -57,7 +57,7 @@ public final class BoardShould {
      *  - | - | -
      */
 
-    assertThat(board.getWinner()).isEqualTo("X");
+    assertThat(board.getWinner()).hasValue(Player.X);
   }
 
   @Test
@@ -77,7 +77,7 @@ public final class BoardShould {
      *  - | - | X
      */
 
-    assertThat(board.getWinner()).isEqualTo("O");
+    assertThat(board.getWinner()).hasValue(Player.O);
   }
 
   @Test
@@ -100,7 +100,7 @@ public final class BoardShould {
      *  X | X | O
      */
 
-    assertThat(board.getWinner()).isEqualTo("Tie");
+    assertThat(board.getWinner()).isNotPresent();
   }
 
   @ParameterizedTest
@@ -110,6 +110,6 @@ public final class BoardShould {
 
     movements.forEach(board::play);
 
-    assertThat(board.getWinner()).isEqualTo("Tie");
+    assertThat(board.getWinner()).isNotPresent();
   }
 }

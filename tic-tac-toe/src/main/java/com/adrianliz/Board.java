@@ -1,5 +1,7 @@
 package com.adrianliz;
 
+import java.util.Optional;
+
 public final class Board {
   private final Cells cells = new Cells();
   private Player playerWithTurn = Player.X;
@@ -14,10 +16,10 @@ public final class Board {
     playerWithTurn = Player.X;
   }
 
-  public String getWinner() {
+  public Optional<Player> getWinner() {
     if (playerWithTurn.equals(Player.O)) {
-      return cells.playerHasLine(Player.X) ? "X" : "Tie";
+      return cells.playerHasLine(Player.X) ? Optional.of(Player.X) : Optional.empty();
     }
-    return cells.playerHasLine(Player.O) ? "O" : "Tie";
+    return cells.playerHasLine(Player.O) ? Optional.of(Player.O) : Optional.empty();
   }
 }
