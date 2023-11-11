@@ -10,17 +10,16 @@ public final class Board {
     if (playerWithTurn.equals("X")) {
       numberOfX++;
       playerWithTurn = "O";
-    } else {
-      numberOfO++;
-      playerWithTurn = "X";
+      return;
     }
+    numberOfO++;
+    playerWithTurn = "X";
   }
 
   public String getWinner() {
     if (playerWithTurn.equals("O")) {
       return numberOfX == 3 ? "X" : null;
-    } else {
-      return numberOfO == 3 ? "O" : null;
     }
+    return numberOfO == 3 ? "O" : null;
   }
 }
