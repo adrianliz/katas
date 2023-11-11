@@ -2,22 +2,22 @@ package com.adrianliz;
 
 public final class Board {
   private final Cells cells = new Cells();
-  private String playerWithTurn = "X";
+  private Player playerWithTurn = Player.X;
 
   public void play(Position position) {
-    if (playerWithTurn.equals("X")) {
-      cells.put("X", position);
-      playerWithTurn = "O";
+    if (playerWithTurn.equals(Player.X)) {
+      cells.put(Player.X, position);
+      playerWithTurn = Player.O;
       return;
     }
-    cells.put("O", position);
-    playerWithTurn = "X";
+    cells.put(Player.O, position);
+    playerWithTurn = Player.X;
   }
 
   public String getWinner() {
-    if (playerWithTurn.equals("O")) {
-      return cells.playerHasLine("X") ? "X" : "Tie";
+    if (playerWithTurn.equals(Player.O)) {
+      return cells.playerHasLine(Player.X) ? "X" : "Tie";
     }
-    return cells.playerHasLine("O") ? "O" : "Tie";
+    return cells.playerHasLine(Player.O) ? "O" : "Tie";
   }
 }

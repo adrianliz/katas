@@ -7,8 +7,8 @@ public class Cells {
   private final List<Position> positionsWithX = new ArrayList<Position>();
   private final List<Position> positionsWithO = new ArrayList<Position>();
 
-  public void put(String player, Position position) {
-    if (player.equals("X")) {
+  public void put(Player player, Position position) {
+    if (player.equals(Player.X)) {
       positionsWithX.add(position);
       return;
     }
@@ -26,7 +26,7 @@ public class Cells {
         || positions.stream().allMatch(p -> p.x() + p.y() == 2);
   }
 
-  public boolean playerHasLine(String player) {
-    return player.equals("X") ? thereIsLine(positionsWithX) : thereIsLine(positionsWithO);
+  public boolean playerHasLine(Player player) {
+    return player.equals(Player.X) ? thereIsLine(positionsWithX) : thereIsLine(positionsWithO);
   }
 }
