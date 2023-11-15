@@ -3,6 +3,7 @@ package hole2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import hole2.TakeHomeCalculator.Money;
 import org.junit.jupiter.api.Test;
 
 public class TakeHomeCalculatorTest {
@@ -11,11 +12,8 @@ public class TakeHomeCalculatorTest {
   public void canCalculateTax() throws Exception {
     Integer first =
         new TakeHomeCalculator(10)
-            .netAmount(
-                new TakeHomeCalculator.Pair<>(40, "GBP"),
-                new TakeHomeCalculator.Pair<>(50, "GBP"),
-                new TakeHomeCalculator.Pair<>(60, "GBP"))
-            .first;
+            .netAmount(new Money(40, "GBP"), new Money(50, "GBP"), new Money(60, "GBP"))
+            .value;
     assertEquals(135, first.intValue());
   }
 
@@ -25,9 +23,6 @@ public class TakeHomeCalculatorTest {
         Incalculable.class,
         () ->
             new TakeHomeCalculator(10)
-                .netAmount(
-                    new TakeHomeCalculator.Pair<>(40, "GBP"),
-                    new TakeHomeCalculator.Pair<>(50, "USD"),
-                    new TakeHomeCalculator.Pair<>(60, "GBP")));
+                .netAmount(new Money(40, "GBP"), new Money(50, "USD"), new Money(60, "GBP")));
   }
 }
