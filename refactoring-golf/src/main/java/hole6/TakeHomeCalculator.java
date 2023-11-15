@@ -1,8 +1,5 @@
 package hole6;
 
-import java.util.Arrays;
-import java.util.List;
-
 class TakeHomeCalculator {
 
   private final TaxRate taxRate;
@@ -13,11 +10,8 @@ class TakeHomeCalculator {
 
   Money netAmount(Money first, Money... rest) {
 
-    List<Money> monies = Arrays.asList(rest);
-
     Money total = first;
-
-    for (Money next : monies) {
+    for (Money next : rest) {
       total = total.plus(next);
     }
 
