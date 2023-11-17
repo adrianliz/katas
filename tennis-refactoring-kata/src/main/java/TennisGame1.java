@@ -28,6 +28,9 @@ public class TennisGame1 implements TennisGame {
     if (receiver.hasAdvantage(server)) {
       return "Advantage player2";
     }
+    if (server.isInDeuce(receiver)) {
+      return "Deuce";
+    }
     if (server.hasSameScore(receiver)) {
       return formatEqualScore();
     }

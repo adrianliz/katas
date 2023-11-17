@@ -26,6 +26,10 @@ public final class Player {
     return score >= 4 && (score - opponent.getScore()) == 1;
   }
 
+  public boolean isInDeuce(final Player opponent) {
+    return score >= 3 && opponent.getScore() >= 3;
+  }
+
   public boolean hasSameScore(Player opponent) {
     return score == opponent.getScore();
   }
