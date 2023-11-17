@@ -20,27 +20,15 @@ public class TennisGame1 implements TennisGame {
 
   public String getScore() {
     if (m_score1 == m_score2) {
-      return switch (m_score1) {
-        case 0 -> "Love-All";
-        case 1 -> "Fifteen-All";
-        case 2 -> "Thirty-All";
-        default -> "Deuce";
-      };
+      return getEqualScore();
     }
     if (m_score1 >= 4 || m_score2 >= 4) {
-      int minusResult = m_score1 - m_score2;
-      if (minusResult == 1) {
-        return "Advantage player1";
-      }
-      if (minusResult == -1) {
-        return "Advantage player2";
-      }
-      if (minusResult >= 2) {
-        return "Win for player1";
-      }
-      return "Win for player2";
+      return getCurrentWinnerScore();
     }
+    return getSetInProgressScore();
+  }
 
+  private String getSetInProgressScore() {
     final StringBuilder score = new StringBuilder();
     int tempScore;
     for (int i = 1; i < 3; i++) {
@@ -58,5 +46,28 @@ public class TennisGame1 implements TennisGame {
       }
     }
     return score.toString();
+  }
+
+  private String getCurrentWinnerScore() {
+    int minusResult = m_score1 - m_score2;
+    if (minusResult == 1) {
+      return "Advantage player1";
+    }
+    if (minusResult == -1) {
+      return "Advantage player2";
+    }
+    if (minusResult >= 2) {
+      return "Win for player1";
+    }
+    return "Win for player2";
+  }
+
+  private String getEqualScore() {
+    return switch (m_score1) {
+      case 0 -> "Love-All";
+      case 1 -> "Fifteen-All";
+      case 2 -> "Thirty-All";
+      default -> "Deuce";
+    };
   }
 }
