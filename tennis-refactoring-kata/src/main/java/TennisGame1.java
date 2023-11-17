@@ -32,9 +32,34 @@ public class TennisGame1 implements TennisGame {
       return "Advantage player2";
     }
     if (player1Score == player2Score) {
-      return getEqualScore();
+      return formatEqualScore();
     }
     return formatPlayerScore(player1Score) + "-" + formatPlayerScore(player2Score);
+  }
+
+  private boolean player1HasWon() {
+    return player1Score >= 4 && (player1Score - player2Score) >= 2;
+  }
+
+  private boolean player2HasWon() {
+    return player2Score >= 4 && (player2Score - player1Score) >= 2;
+  }
+
+  private boolean player1HasAdvantage() {
+    return player1Score >= 4 && (player1Score - player2Score) == 1;
+  }
+
+  private boolean player2HasAdvantage() {
+    return player2Score >= 4 && (player2Score - player1Score) == 1;
+  }
+
+  private String formatEqualScore() {
+    return switch (player1Score) {
+      case 0 -> "Love-All";
+      case 1 -> "Fifteen-All";
+      case 2 -> "Thirty-All";
+      default -> "Deuce";
+    };
   }
 
   private String formatPlayerScore(int playerScore) {
@@ -44,31 +69,6 @@ public class TennisGame1 implements TennisGame {
       case 2 -> "Thirty";
       case 3 -> "Forty";
       default -> "";
-    };
-  }
-
-  boolean player1HasWon() {
-    return player1Score >= 4 && (player1Score - player2Score) >= 2;
-  }
-
-  boolean player2HasWon() {
-    return player2Score >= 4 && (player2Score - player1Score) >= 2;
-  }
-
-  boolean player1HasAdvantage() {
-    return player1Score >= 4 && (player1Score - player2Score) == 1;
-  }
-
-  boolean player2HasAdvantage() {
-    return player2Score >= 4 && (player2Score - player1Score) == 1;
-  }
-
-  private String getEqualScore() {
-    return switch (player1Score) {
-      case 0 -> "Love-All";
-      case 1 -> "Fifteen-All";
-      case 2 -> "Thirty-All";
-      default -> "Deuce";
     };
   }
 }
