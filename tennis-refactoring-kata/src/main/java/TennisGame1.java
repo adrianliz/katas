@@ -29,23 +29,17 @@ public class TennisGame1 implements TennisGame {
   }
 
   private String getSetInProgressScore() {
-    final StringBuilder score = new StringBuilder();
-    int tempScore;
-    for (int i = 1; i < 3; i++) {
-      if (i == 1) {
-        tempScore = player1Score;
-      } else {
-        score.append("-");
-        tempScore = player2Score;
-      }
-      switch (tempScore) {
-        case 0 -> score.append("Love");
-        case 1 -> score.append("Fifteen");
-        case 2 -> score.append("Thirty");
-        case 3 -> score.append("Forty");
-      }
-    }
-    return score.toString();
+    return formatPlayerScore(player1Score) + "-" + formatPlayerScore(player2Score);
+  }
+
+  private String formatPlayerScore(int playerScore) {
+    return switch (playerScore) {
+      case 0 -> "Love";
+      case 1 -> "Fifteen";
+      case 2 -> "Thirty";
+      case 3 -> "Forty";
+      default -> "";
+    };
   }
 
   private String getCurrentWinnerScore() {
