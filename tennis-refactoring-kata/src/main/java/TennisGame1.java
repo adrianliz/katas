@@ -8,7 +8,7 @@ public class TennisGame1 implements TennisGame {
   }
 
   public void wonPoint(String playerName) {
-    if (server.getName().equals(playerName)) {
+    if (server.is(playerName)) {
       server.incrementScore();
       return;
     }
