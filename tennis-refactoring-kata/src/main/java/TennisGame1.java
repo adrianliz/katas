@@ -35,11 +35,11 @@ public class TennisGame1 implements TennisGame {
   }
 
   private boolean player1HasWon() {
-    return server.getScore() >= 4 && (server.getScore() - receiver.getScore()) >= 2;
+    return server.hasWon(receiver);
   }
 
   private boolean player2HasWon() {
-    return receiver.getScore() >= 4 && (receiver.getScore() - server.getScore()) >= 2;
+    return receiver.hasWon(server);
   }
 
   private boolean player1HasAdvantage() {
