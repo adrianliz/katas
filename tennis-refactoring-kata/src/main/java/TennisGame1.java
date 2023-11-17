@@ -49,14 +49,14 @@ public class TennisGame1 implements TennisGame {
   }
 
   private String getCurrentWinnerScore() {
-    int minusResult = player1Score - player2Score;
-    if (minusResult == 1) {
+    int differencePoints = player1Score - player2Score;
+    if (differencePoints == 1) {
       return "Advantage player1";
     }
-    if (minusResult == -1) {
+    if (differencePoints == -1) {
       return "Advantage player2";
     }
-    if (minusResult >= 2) {
+    if (differencePoints >= 2) {
       return "Win for player1";
     }
     return "Win for player2";
