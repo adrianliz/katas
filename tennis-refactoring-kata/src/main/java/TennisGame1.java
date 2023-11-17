@@ -25,10 +25,6 @@ public class TennisGame1 implements TennisGame {
     if (player1Score >= 4 || player2Score >= 4) {
       return getCurrentWinnerScore();
     }
-    return getSetInProgressScore();
-  }
-
-  private String getSetInProgressScore() {
     return formatPlayerScore(player1Score) + "-" + formatPlayerScore(player2Score);
   }
 
