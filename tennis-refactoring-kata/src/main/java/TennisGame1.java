@@ -19,11 +19,20 @@ public class TennisGame1 implements TennisGame {
   }
 
   public String getScore() {
+    if (player1HasWon()) {
+      return "Win for player1";
+    }
+    if (player2HasWon()) {
+      return "Win for player2";
+    }
+    if (player1HasAdvantage()) {
+      return "Advantage player1";
+    }
+    if (player2HasAdvantage()) {
+      return "Advantage player2";
+    }
     if (player1Score == player2Score) {
       return getEqualScore();
-    }
-    if (player1Score >= 4 || player2Score >= 4) {
-      return getCurrentWinnerScore();
     }
     return formatPlayerScore(player1Score) + "-" + formatPlayerScore(player2Score);
   }
@@ -38,18 +47,20 @@ public class TennisGame1 implements TennisGame {
     };
   }
 
-  private String getCurrentWinnerScore() {
-    int differencePoints = player1Score - player2Score;
-    if (differencePoints == 1) {
-      return "Advantage player1";
-    }
-    if (differencePoints == -1) {
-      return "Advantage player2";
-    }
-    if (differencePoints >= 2) {
-      return "Win for player1";
-    }
-    return "Win for player2";
+  boolean player1HasWon() {
+    return player1Score >= 4 && (player1Score - player2Score) >= 2;
+  }
+
+  boolean player2HasWon() {
+    return player2Score >= 4 && (player2Score - player1Score) >= 2;
+  }
+
+  boolean player1HasAdvantage() {
+    return player1Score >= 4 && (player1Score - player2Score) == 1;
+  }
+
+  boolean player2HasAdvantage() {
+    return player2Score >= 4 && (player2Score - player1Score) == 1;
   }
 
   private String getEqualScore() {
