@@ -1,21 +1,21 @@
 public class TennisGame1 implements TennisGame {
 
-  private int player1Score = 0;
-  private int player2Score = 0;
-  private String player1Name;
-  private String player2Name;
+  private int serverScore = 0;
+  private int receiverScore = 0;
+  private Player server;
+  private Player receiver;
 
-  public TennisGame1(String player1Name, String player2Name) {
-    this.player1Name = player1Name;
-    this.player2Name = player2Name;
+  public TennisGame1(String serverName, String receiverName) {
+    this.server = new Player(serverName);
+    this.receiver = new Player(receiverName);
   }
 
   public void wonPoint(String playerName) {
-    if (player1Name.equals(playerName)) {
-      player1Score += 1;
+    if (server.getName().equals(playerName)) {
+      serverScore += 1;
       return;
     }
-    player2Score += 1;
+    receiverScore += 1;
   }
 
   public String getScore() {
@@ -31,30 +31,30 @@ public class TennisGame1 implements TennisGame {
     if (player2HasAdvantage()) {
       return "Advantage player2";
     }
-    if (player1Score == player2Score) {
+    if (serverScore == receiverScore) {
       return formatEqualScore();
     }
-    return formatPlayerScore(player1Score) + "-" + formatPlayerScore(player2Score);
+    return formatPlayerScore(serverScore) + "-" + formatPlayerScore(receiverScore);
   }
 
   private boolean player1HasWon() {
-    return player1Score >= 4 && (player1Score - player2Score) >= 2;
+    return serverScore >= 4 && (serverScore - receiverScore) >= 2;
   }
 
   private boolean player2HasWon() {
-    return player2Score >= 4 && (player2Score - player1Score) >= 2;
+    return receiverScore >= 4 && (receiverScore - serverScore) >= 2;
   }
 
   private boolean player1HasAdvantage() {
-    return player1Score >= 4 && (player1Score - player2Score) == 1;
+    return serverScore >= 4 && (serverScore - receiverScore) == 1;
   }
 
   private boolean player2HasAdvantage() {
-    return player2Score >= 4 && (player2Score - player1Score) == 1;
+    return receiverScore >= 4 && (receiverScore - serverScore) == 1;
   }
 
   private String formatEqualScore() {
-    return switch (player1Score) {
+    return switch (serverScore) {
       case 0 -> "Love-All";
       case 1 -> "Fifteen-All";
       case 2 -> "Thirty-All";
