@@ -9,4 +9,12 @@ public final class Player {
   public String getName() {
     return name;
   }
+
+  public void incrementScore() {
+    score++;
+  }
+
+  public int getScore() {
+    return score;
+  }
 }
