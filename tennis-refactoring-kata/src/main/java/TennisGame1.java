@@ -1,7 +1,7 @@
 public class TennisGame1 implements TennisGame {
 
-  private int m_score1 = 0;
-  private int m_score2 = 0;
+  private int player1Score = 0;
+  private int player2Score = 0;
   private String player1Name;
   private String player2Name;
 
@@ -12,17 +12,17 @@ public class TennisGame1 implements TennisGame {
 
   public void wonPoint(String playerName) {
     if (player1Name.equals(playerName)) {
-      m_score1 += 1;
+      player1Score += 1;
       return;
     }
-    m_score2 += 1;
+    player2Score += 1;
   }
 
   public String getScore() {
-    if (m_score1 == m_score2) {
+    if (player1Score == player2Score) {
       return getEqualScore();
     }
-    if (m_score1 >= 4 || m_score2 >= 4) {
+    if (player1Score >= 4 || player2Score >= 4) {
       return getCurrentWinnerScore();
     }
     return getSetInProgressScore();
@@ -33,10 +33,10 @@ public class TennisGame1 implements TennisGame {
     int tempScore;
     for (int i = 1; i < 3; i++) {
       if (i == 1) {
-        tempScore = m_score1;
+        tempScore = player1Score;
       } else {
         score.append("-");
-        tempScore = m_score2;
+        tempScore = player2Score;
       }
       switch (tempScore) {
         case 0 -> score.append("Love");
@@ -49,7 +49,7 @@ public class TennisGame1 implements TennisGame {
   }
 
   private String getCurrentWinnerScore() {
-    int minusResult = m_score1 - m_score2;
+    int minusResult = player1Score - player2Score;
     if (minusResult == 1) {
       return "Advantage player1";
     }
@@ -63,7 +63,7 @@ public class TennisGame1 implements TennisGame {
   }
 
   private String getEqualScore() {
-    return switch (m_score1) {
+    return switch (player1Score) {
       case 0 -> "Love-All";
       case 1 -> "Fifteen-All";
       case 2 -> "Thirty-All";
