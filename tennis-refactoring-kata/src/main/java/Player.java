@@ -25,4 +25,8 @@ public final class Player {
   public boolean hasAdvantage(final Player opponent) {
     return score >= 4 && (score - opponent.getScore()) == 1;
   }
+
+  public boolean hasSameScore(Player opponent) {
+    return score == opponent.getScore();
+  }
 }
