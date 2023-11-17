@@ -16,38 +16,22 @@ public class TennisGame1 implements TennisGame {
   }
 
   public String getScore() {
-    if (player1HasWon()) {
+    if (server.hasWon(receiver)) {
       return "Win for player1";
     }
-    if (player2HasWon()) {
+    if (receiver.hasWon(server)) {
       return "Win for player2";
     }
-    if (player1HasAdvantage()) {
+    if (server.hasAdvantage(receiver)) {
       return "Advantage player1";
     }
-    if (player2HasAdvantage()) {
+    if (receiver.hasAdvantage(server)) {
       return "Advantage player2";
     }
     if (server.getScore() == receiver.getScore()) {
       return formatEqualScore();
     }
     return formatPlayerScore(server.getScore()) + "-" + formatPlayerScore(receiver.getScore());
-  }
-
-  private boolean player1HasWon() {
-    return server.hasWon(receiver);
-  }
-
-  private boolean player2HasWon() {
-    return receiver.hasWon(server);
-  }
-
-  private boolean player1HasAdvantage() {
-    return server.getScore() >= 4 && (server.getScore() - receiver.getScore()) == 1;
-  }
-
-  private boolean player2HasAdvantage() {
-    return receiver.getScore() >= 4 && (receiver.getScore() - server.getScore()) == 1;
   }
 
   private String formatEqualScore() {

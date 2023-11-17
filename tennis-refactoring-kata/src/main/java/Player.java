@@ -21,4 +21,8 @@ public final class Player {
   public boolean hasWon(final Player opponent) {
     return score >= 4 && (score - opponent.getScore()) >= 2;
   }
+
+  public boolean hasAdvantage(final Player opponent) {
+    return score >= 4 && (score - opponent.getScore()) == 1;
+  }
 }
