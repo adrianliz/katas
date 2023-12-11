@@ -9,7 +9,21 @@ public final class Ohce {
   }
 
   public void echo(final String name) {
+    final int hour = clock.getHour();
+    if (hour >= 6 && hour < 12) {
+      greetWithGoodDays(name);
+    } else if (hour >= 20 || hour < 6) {
+      greetWithGoodNights(name);
+    }
+  }
+
+  private void greetWithGoodNights(String name) {
     final String message = String.format("¡Buenas noches %s!", name);
+    console.print(message);
+  }
+
+  private void greetWithGoodDays(String name) {
+    final String message = String.format("¡Buenos días %s!", name);
     console.print(message);
   }
 }
