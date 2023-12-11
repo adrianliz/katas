@@ -26,4 +26,16 @@ public final class OhceShould {
 
     Mockito.verify(console).print("¡Buenos días Pedro!");
   }
+
+  @Test
+  public void greets_with_good_afternoons_when_clock_is_between_12_and_20() {
+    final Clock clock = Mockito.mock(Clock.class);
+    Mockito.when(clock.getHour()).thenReturn(15);
+    final Console console = Mockito.spy(Console.class);
+    final Ohce ohce = new Ohce(clock, console);
+
+    ohce.echo("Pedro");
+
+    Mockito.verify(console).print("¡Buenas tardes Pedro!");
+  }
 }

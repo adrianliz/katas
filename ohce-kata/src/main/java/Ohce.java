@@ -15,6 +15,12 @@ public final class Ohce {
     } else if (hour >= 20 || hour < 6) {
       greetWithGoodNights(name);
     }
+    greetWithGoodAfternoons(name);
+  }
+
+  private void greetWithGoodAfternoons(String name) {
+    final String message = String.format("¡Buenas tardes %s!", name);
+    console.print(message);
   }
 
   private void greetWithGoodNights(String name) {
