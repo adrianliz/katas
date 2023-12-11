@@ -12,10 +12,13 @@ public final class Ohce {
     final int hour = clock.getHour();
     if (hour >= 6 && hour < 12) {
       greetWithGoodDays(name);
-    } else if (hour >= 20 || hour < 6) {
-      greetWithGoodNights(name);
+      return;
     }
-    greetWithGoodAfternoons(name);
+    if (hour >= 12 && hour < 20) {
+      greetWithGoodAfternoons(name);
+      return;
+    }
+    greetWithGoodNights(name);
   }
 
   private void greetWithGoodAfternoons(String name) {
