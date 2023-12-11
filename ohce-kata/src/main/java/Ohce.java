@@ -36,4 +36,9 @@ public final class Ohce {
     final String message = String.format("¡Buenos días %s!", name);
     console.print(message);
   }
+
+  public void echo(String word) {
+    final String reversedWord = new StringBuilder(word).reverse().toString();
+    console.print(reversedWord);
+  }
 }

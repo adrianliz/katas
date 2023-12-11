@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mockito;
@@ -38,5 +39,16 @@ public final class OhceShould {
     new Ohce("Pedro", clock, console);
 
     Mockito.verify(console).print("¡Buenas tardes Pedro!");
+  }
+
+  @Test
+  public void reverse_echoing() {
+    final Clock clock = Mockito.mock(Clock.class);
+    final Console console = Mockito.mock(Console.class);
+
+    final Ohce ohce = new Ohce("Pedro", clock, console);
+    ohce.echo("joseluis");
+
+    Mockito.verify(console).print("siulesoj");
   }
 }
