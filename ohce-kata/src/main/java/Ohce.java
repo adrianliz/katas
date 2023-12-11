@@ -40,5 +40,12 @@ public final class Ohce {
   public void echo(String word) {
     final String reversedWord = new StringBuilder(word).reverse().toString();
     console.print(reversedWord);
+    if (isPalindromic(word)) {
+      console.print("¡Bonita palabra!");
+    }
+  }
+
+  private boolean isPalindromic(String word) {
+    return word.contentEquals(new StringBuilder(word).reverse());
   }
 }

@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.mockito.InOrder;
 import org.mockito.Mockito;
 
 public final class OhceShould {
@@ -50,5 +51,18 @@ public final class OhceShould {
     ohce.echo("joseluis");
 
     Mockito.verify(console).print("siulesoj");
+  }
+
+  @Test
+  public void says_bonita_palabra_after_reverse_echoing_when_word_is_palindromic() {
+    final Clock clock = Mockito.mock(Clock.class);
+    final Console console = Mockito.mock(Console.class);
+
+    final Ohce ohce = new Ohce("Pedro", clock, console);
+    ohce.echo("ana");
+
+    final InOrder inOrderConsole = Mockito.inOrder(console);
+    inOrderConsole.verify(console).print("ana");
+    inOrderConsole.verify(console).print("¡Bonita palabra!");
   }
 }
