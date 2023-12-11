@@ -10,9 +10,8 @@ public final class OhceShould {
     final Clock clock = Mockito.mock(Clock.class);
     Mockito.when(clock.getHour()).thenReturn(hour);
     final Console console = Mockito.spy(Console.class);
-    final Ohce ohce = new Ohce(clock, console);
 
-    ohce.greet("Pedro");
+    new Ohce("Pedro", clock, console);
 
     Mockito.verify(console).print("¡Buenas noches Pedro!");
   }
@@ -23,9 +22,8 @@ public final class OhceShould {
     final Clock clock = Mockito.mock(Clock.class);
     Mockito.when(clock.getHour()).thenReturn(hour);
     final Console console = Mockito.spy(Console.class);
-    final Ohce ohce = new Ohce(clock, console);
 
-    ohce.greet("Pedro");
+    new Ohce("Pedro", clock, console);
 
     Mockito.verify(console).print("¡Buenos días Pedro!");
   }
@@ -36,9 +34,8 @@ public final class OhceShould {
     final Clock clock = Mockito.mock(Clock.class);
     Mockito.when(clock.getHour()).thenReturn(hour);
     final Console console = Mockito.spy(Console.class);
-    final Ohce ohce = new Ohce(clock, console);
 
-    ohce.greet("Pedro");
+    new Ohce("Pedro", clock, console);
 
     Mockito.verify(console).print("¡Buenas tardes Pedro!");
   }
