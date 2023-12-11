@@ -8,7 +8,7 @@ public final class Ohce {
     this.console = console;
   }
 
-  public void echo(final String name) {
+  public void greet(final String name) {
     final int hour = clock.getHour();
     if (hour >= 6 && hour < 12) {
       greetWithGoodDays(name);

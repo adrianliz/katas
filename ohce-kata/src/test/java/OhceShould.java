@@ -10,7 +10,7 @@ public final class OhceShould {
     final Console console = Mockito.spy(Console.class);
     final Ohce ohce = new Ohce(clock, console);
 
-    ohce.echo("Pedro");
+    ohce.greet("Pedro");
 
     Mockito.verify(console).print("¡Buenas noches Pedro!");
   }
@@ -22,7 +22,7 @@ public final class OhceShould {
     final Console console = Mockito.spy(Console.class);
     final Ohce ohce = new Ohce(clock, console);
 
-    ohce.echo("Pedro");
+    ohce.greet("Pedro");
 
     Mockito.verify(console).print("¡Buenos días Pedro!");
   }
@@ -34,7 +34,7 @@ public final class OhceShould {
     final Console console = Mockito.spy(Console.class);
     final Ohce ohce = new Ohce(clock, console);
 
-    ohce.echo("Pedro");
+    ohce.greet("Pedro");
 
     Mockito.verify(console).print("¡Buenas tardes Pedro!");
   }
