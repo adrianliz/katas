@@ -65,4 +65,15 @@ public final class OhceShould {
     inOrderConsole.verify(console).print("ana");
     inOrderConsole.verify(console).print("¡Bonita palabra!");
   }
+
+  @Test
+  public void says_stop_when_word_is_stop() {
+    final Clock clock = Mockito.mock(Clock.class);
+    final Console console = Mockito.mock(Console.class);
+
+    final Ohce ohce = new Ohce("Pedro", clock, console);
+    ohce.echo("Stop!");
+
+    Mockito.verify(console).print("Stop!");
+  }
 }

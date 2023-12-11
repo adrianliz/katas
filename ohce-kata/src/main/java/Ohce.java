@@ -1,25 +1,26 @@
 public final class Ohce {
-
+  private final String userName;
   private final Clock clock;
   private final Console console;
 
-  public Ohce(final String name, final Clock clock, final Console console) {
+  public Ohce(final String userName, final Clock clock, final Console console) {
+    this.userName = userName;
     this.clock = clock;
     this.console = console;
-    greet(name);
+    greet();
   }
 
-  private void greet(final String name) {
+  private void greet() {
     final int hour = clock.getHour();
     if (hour >= 6 && hour < 12) {
-      greetWithGoodDays(name);
+      greetWithGoodDays(userName);
       return;
     }
     if (hour >= 12 && hour < 20) {
-      greetWithGoodAfternoons(name);
+      greetWithGoodAfternoons(userName);
       return;
     }
-    greetWithGoodNights(name);
+    greetWithGoodNights(userName);
   }
 
   private void greetWithGoodAfternoons(String name) {
@@ -38,6 +39,11 @@ public final class Ohce {
   }
 
   public void echo(String word) {
+    final String stopWord = "Stop!";
+    if (word.contentEquals(stopWord)) {
+      console.print(stopWord);
+      return;
+    }
     final String reversedWord = new StringBuilder(word).reverse().toString();
     console.print(reversedWord);
     if (isPalindromic(word)) {
